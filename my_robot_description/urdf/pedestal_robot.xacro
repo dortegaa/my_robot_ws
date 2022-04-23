@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="pedestal_robot">
+    <link name="world"/>
+    <link name = "pedestal">
+        <inertial>
+            <origin xyz="0 0 0.5" rpy="0 0 0"/>
+            <mass value="200"/>
+            <inertia ixx="200" ixy="200" ixz="200" iyy="200" iyz="200" izz="200"/>
+        </inertial>
+        <visual>
+            <origin xyz = "0 0 -1.5" rpy = "0 0 0" />
+            <geometry>
+                <cylinder radius = "0.5" length = "3" />
+            </geometry>
+            <material name="green">
+                <color rgba="0.2 1 0.2 1"/>
+            </material>        
+        </visual>
+        <collision>
+            <origin xyz = "0 0 0" rpy = "0 0 0" />
+            <geometry>
+                <cylinder radius = "0.5" length = "3" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference = "pedestal">
+        <mu1> 0.2 </mu1>
+        <mu2> 0.2 </mu2>
+        <material> Gazebo/Organge </material>
+    </gazebo>
+    
+    <joint name = "world_joint" type="fixed">
+        <parent link = "world" />
+        <child link = "pedestal" />
+        <origin xyz = "0 0 3" rpy = "0.0 0.0 0.0"/>
+    </joint>
+   
+    <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+    <xacro:include filename="$(find my_robot_description)/urdf/mrm_xacro.xacro" />
+
+
+
+  <joint name="base_joint" type="fixed">
+    <parent link="pedestal" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 1.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+
+</robot>

@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+
+<robot name="gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+<!-- only movable links have number in the name, like link1, link2 -->
+<!-- only movable links have number in the name, like joint1, joint2 -->
+
+
+	<link name="link4">
+		<collision>
+			<origin xyz="0 0 0" rpy="1.5708 0 0"/>
+			<geometry>
+				<cylinder length="0.4" radius="0.04"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="1.5708 0 0"/>
+			<geometry>
+				<cylinder length="0.4" radius="0.04"/>
+			</geometry>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 0 0" rpy="1.5708 0 0"/>
+			<mass value="0.4"/>
+			<inertia
+				ixx="0.05" ixy="0.0" ixz="0.0"
+				iyy="0.002" iyz="0.0"
+				izz="0.05"/>
+		</inertial>
+	</link>
+
+	<gazebo reference="link4">
+		<material>Gazebo/Red</material>
+	</gazebo>
+
+	<!-- link5 and its prismatic joint5 relative to link4 -->
+	<!-- translating along y axis -->
+	<joint name="joint5" type="prismatic">
+		<parent link="link4"/>
+		<child link="link5"/>
+		<origin xyz="0 0.16 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="100" velocity="100" lower="-0.16" upper="0.0"/>
+	</joint>
+
+	<link name="link5">
+		<collision>
+			<origin xyz="0 0 0.15" rpy="0 0 0"/>
+			<geometry>
+				<cylinder length="0.3" radius="0.04"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.15" rpy="0 0 0"/>
+			<geometry>
+				<cylinder length="0.3" radius="0.04"/>
+			</geometry>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 0 0.15" rpy="0 0 0"/>
+			<mass value="0.2"/>
+			<inertia
+				ixx="0.02" ixy="0.0" ixz="0.0"
+				iyy="0.02" iyz="0.0"
+				izz="0.001"/>
+		</inertial>
+	</link>
+
+	<gazebo reference="link5">
+		<material>Gazebo/Red</material>
+	</gazebo>
+
+	<!-- link6 and its prismatic joint6 relative to link4 -->
+	<!-- translating along y axis -->
+	<joint name="joint6" type="prismatic">
+		<parent link="link4"/>
+		<child link="link6"/>
+		<origin xyz="0 -0.16 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="100" velocity="100" lower="0.0" upper="0.16"/>
+	</joint>
+
+	<link name="link6">
+		<collision>
+			<origin xyz="0 0 0.15" rpy="0 0 0"/>
+			<geometry>
+				<cylinder length="0.3" radius="0.04"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.15" rpy="0 0 0"/>
+			<geometry>
+				<cylinder length="0.3" radius="0.04"/>
+			</geometry>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 0 0.15" rpy="0 0 0"/>
+			<mass value="0.2"/>
+			<inertia
+				ixx="0.02" ixy="0.0" ixz="0.0"
+				iyy="0.02" iyz="0.0"
+				izz="0.001"/>
+		</inertial>
+	</link>
+
+	<gazebo reference="link6">
+		<material>Gazebo/Red</material>
+	</gazebo>
+
+</robot>

@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: my_robot_description
+    relative_path: urdf/mrm_xacro.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/my_rob1.srdf
+  CONFIG:
+    author_name: David
+    author_email: dortega@cidesi.edu.mx
+    generated_timestamp: 1647370528

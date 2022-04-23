@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+<robot name="my_rob1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename = "$(find my_robot_description)/urdf/links_joints.xacro" />
+    <xacro:include filename = "$(find my_robot_description)/urdf/robot_material.xacro" />
+
+
+    <xacro:m_link_box name="base_link"  
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.5" 
+                size = "1 1 1" 
+                mass = "200"
+                ixx = "170.6 " ixy = "0" ixz = "0"
+                iyy = "170.6" iyz = "0"
+                izz = "170.6"/> 
+ 
+    <xacro:m_joint name="base_link__link_01" type = "revolute" 
+                axis_xyz = "0 0 1" 
+                origin_rpy = "0 0 0" origin_xyz = "0 0 1" 
+                parent = "base_link" child = "link_01" 
+                limit_e = "1000" limit_l = "-3.14" limit_u = "3.14" limit_v = "0.5" />
+
+    <xacro:m_link_cylinder name = "link_01"  
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.2" 
+                length = "0.4" radius = "0.35" 
+                mass = "1"
+                ixx = "13.6 " ixy = "0" ixz = "0"
+                iyy = "13.6" iyz = "0"
+                izz = "9.6"
+                color = "blue"/>
+
+    <xacro:m_joint name="link_01__link_02"  type = "revolute" 
+                axis_xyz = "0 1 0" 
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.4" 
+                parent = "link_01" child = "link_02"
+                limit_e = "1000" limit_l = "-1" limit_u = "1" limit_v = "0.5" />
+
+    <xacro:m_link_cylinder name = "link_02"  
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.4" 
+                length = "0.8" radius = "0.15"
+                mass = "1"
+                ixx = "12.6 " ixy = "0" ixz = "0"
+                iyy = "12.6" iyz = "0"
+                izz = "0.6"
+                color = "orange"/>
+
+    <xacro:m_joint name="link_02__link_03"  type = "revolute" 
+                axis_xyz = "0 1 0" 
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.8" 
+                parent = "link_02" child = "link_03" 
+                limit_e = "1000" limit_l = "-1" limit_u = "1" limit_v = "0.5" />
+
+
+    <xacro:m_link_cylinder name = "link_03"  
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.4" 
+                length = "0.8" radius = "0.15"
+                mass = "1"
+                ixx = "12.6 " ixy = "0" ixz = "0"
+                iyy = "12.6" iyz = "0"
+                izz = "0.6"
+                color = "blue"/>
+
+    <xacro:m_joint name="link_03__link_04"  type = "revolute" 
+                axis_xyz = "0 1 0" 
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.8" 
+                parent = "link_03" child = "link_04" 
+                limit_e = "1000" limit_l = "-1" limit_u = "1" limit_v = "0.5" />
+
+    <xacro:m_link_cylinder name = "link_04"  
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.4" 
+                length = "0.8" radius = "0.15"
+                mass = "1"
+                ixx = "12.6 " ixy = "0" ixz = "0"
+                iyy = "12.6" iyz = "0"
+                izz = "0.6"
+                color = "orange"/>
+
+    <xacro:m_joint name="link_04__link_05"  type = "revolute" 
+                axis_xyz = "0 0 1" 
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.8" 
+                parent = "link_04" child = "link_05" 
+                limit_e = "1000" limit_l = "-3.14" limit_u = "3.14" limit_v = "0.5" />
+
+
+    <xacro:m_link_cylinder name = "link_05"  
+                origin_rpy = "0 0 0" origin_xyz = "0 0 0.125" 
+                length = "0.25" radius = "0.15"
+                mass = "1"
+                ixx = "0.47" ixy = "0" ixz = "0"
+                iyy = "0.47" iyz = "0"
+                izz = "0.2"
+                color = "blue"/>
+
+
+    <gazebo>
+        <plugin name = "gazebo_ros_control" filename = "libgazebo_ros_control.so">
+        </plugin>
+    </gazebo>
+</robot>

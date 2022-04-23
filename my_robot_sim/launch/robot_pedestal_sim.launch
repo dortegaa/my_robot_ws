@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="xacro_name" default="pedestal_robot.xacro"/>
+    <param name="robot_description" command="$(find xacro)/xacro '$(find my_robot_description)/urdf/$(arg xacro_name)'"/>
+
+    <include file="$(find my_robot_sim)/launch/launch_gazebo.launch"/>
+
+
+    <include file="$(find my_robot_sim)/launch/spawn_robot.launch">
+        <arg name="robot_name" value="robot"/>
+        <arg name="init_pose" value="-x 0 -y 0 -z 0"/>
+    </include>
+
+    <include file="$(find my_robot_sim)/launch/launch_controller.launch"/>
+
+   
+
+</launch>
